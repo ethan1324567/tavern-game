@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Dragon's Flagon Dice Den</title>
+    <style>
+        body {
+            font-family: 'MedievalSharp', 'Times New Roman', serif;
+            background: #2b1a0d url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYX////19fXu7u7p6enj4+Pe3t7b29vZ2dnX19fV1dXR0dHNzc3Ly8vJycnHx8fFxcXDw8PBwcG/v7+9vb27u7u5ubm3t7e1tbWzs7OxsbHw8PCS5xLBAAABY0lEQVR4nO3W13KDQBBE0QZBzjmn//+MBQKBQCCQrDr1qXqbqr41Z/SQqqqqqqqqqqqqqvpHTc7li8VCLj0Z9bqo5ArFYi4d9Tqo5HPFYjYR9Tqo5DL5YmYq6nVQyaaLxfRE1OugkhoUk5NRr4PKSHEkGfU6qCSKxUTU66CSKBbjUa+DStTr4H8kXox6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVT+A1QnQeD5wvjBAAAAAElFTkSuQmCC');
+            color: #e0d3a9;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(70, 40, 20, 0.9) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAOVBMVEXp6en////9/f38/Pz6+vr5+fn39/f19fXz8/Py8vLw8PDv7+/u7u7t7e3s7Ozr6+vq6urn5+fm5ubj4+MZhb2jAAAAE0lEQVR4nO3OMQEAAAQAMMKJf2i0BQvLAr4ZJwIAAAAASUVORK5CYII=');
+            border: 15px solid #6b4a32;
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 1;
+        }
+
+        .container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(107,74,50,0.3) 0%, rgba(70,40,20,0.6) 100%);
+            z-index: -1;
+        }
+
+        .tavern-sign {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px #000;
+            margin: 20px 0;
+            padding: 20px;
+            background: #4a2a1a;
+            border: 3px solid #6b4a32;
+            transform: rotate(-1deg);
+            border-radius: 10px;
+        }
+
+        .gold-counter,
+        .bet-controls,
+        #result,
+        button {
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        .gold-counter {
+            font-size: 1.5em;
+            margin: 20px;
+            padding: 15px;
+            background: #382010;
+            border: 3px solid #cda434;
+            border-radius: 5px;
+            display: inline-block;
+            color: #ffd700;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .bet-controls {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(70, 40, 20, 0.9);
+            border: 3px solid #6b4a32;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        button {
+            background: linear-gradient(to bottom, #6b4a32 0%, #4a2a1a 100%);
+            color: #e0d3a9;
+            border: 2px solid #cda434;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px #000;
+            position: relative;
+            min-width: 160px;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom, #8b6a52 0%, #6b4a32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        button:before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border: 1px solid rgba(205,164,52,0.3);
+            border-radius: 3px;
+        }
+
+        #betAmount {
+            background: #f4e8d4;
+            color: #4a2a1a;
+            border: 2px solid #6b4a32;
+            padding: 12px;
+            width: 140px;
+            font-size: 1.2em;
+            margin: 10px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        .dice-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(40, 20, 10, 0.9);
+            border: 3px solid #6b4a32;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .dice-container:before {
+            content: '🎲';
+            position: absolute;
+            font-size: 2em;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .dice {
+            font-size: 7em;
+            padding: 20px;
+            background: #4a2a1a;
+            border: 3px solid #cda434;
+            border-radius: 15px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px;
+            color: #e0d3a9;
+            box-shadow: 0 0 15px rgba(205,164,52,0.2);
+            transition: transform 0.3s;
+        }
+
+        #rollButton {
+            font-size: 1.5em;
+            padding: 20px 40px;
+            background: linear-gradient(to bottom, #8b1a1a 0%, #4a1a1a 100%);
+            border: 3px solid #cda434;
+            margin: 20px 0;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        #rollButton:hover {
+            background: linear-gradient(to bottom, #ab3a3a 0%, #6b1a1a 100%);
+        }
+
+        #result {
+            font-size: 1.3em;
+            margin: 30px;
+            padding: 20px;
+            background: rgba(40, 20, 10, 0.9);
+            border: 3px solid #6b4a32;
+            border-radius: 5px;
+            color: #ffd700;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-style: italic;
+        }
+
+        .tavern-decoration {
+            font-size: 2em;
+            margin: 20px 0;
+            opacity: 0.8;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .candle {
+            animation: flicker 1.5s infinite;
+            display: inline-block;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="tavern-sign">🛡 The Dragon's Flagon 🍻</div>
+        <div class="tavern-decoration">
+            <span class="candle">🕯️</span> 
+            🍺🗡️🏹 
+            <span class="candle">🕯️</span>
+        </div>
+        
+        <div class="gold-counter">💰 Gold Pieces: <span id="gold">100</span></div>
+
+        <div class="bet-controls">
+            <button onclick="adjustBet(1)">Minimal Wager</button>
+            <button onclick="adjustBet(0.5)">Halve Thy Stake</button>
+            <button onclick="adjustBet(2)">Double Or Naught</button>
+            <button onclick="allIn()">All Ye Gold!</button>
+            <div style="margin: 20px 0">
+                <input type="number" id="betAmount" value="5" min="1" max="100">
+                <button onclick="updateBet()">Lock Wager</button>
+            </div>
+        </div>
+
+        <div class="dice-container">
+            <div>
+                <div style="color: #cda434; margin-bottom: 10px;">Thy Fortune</div>
+                <div id="playerDice" class="dice">⚄</div>
+            </div>
+            <div>
+                <div style="color: #cda434; margin-bottom: 10px;">House's Fate</div>
+                <div id="opponentDice" class="dice">⚄</div>
+            </div>
+        </div>
+
+        <button id="rollButton" onclick="rollDice()">⚔️ Roll the Bones! ⚔️</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let gold = 100;
+        let currentBet = 5;
+
+        function updateGoldDisplay() {
+            document.getElementById('gold').textContent = gold;
+            document.getElementById('betAmount').max = gold;
+        }
+
+        function adjustBet(multiplier) {
+            if(multiplier === 1) {
+                currentBet = 1;
+            } else {
+                currentBet = Math.round(currentBet * multiplier);
+            }
+            
+            currentBet = Math.max(1, Math.min(currentBet, gold));
+            document.getElementById('betAmount').value = currentBet;
+            playTavernSound();
+        }
+
+        function allIn() {
+            currentBet = Math.max(1, Math.min(gold, gold));
+            document.getElementById('betAmount').value = currentBet;
+            playTavernSound();
+        }
+
+        function updateBet() {
+            currentBet = parseInt(document.getElementById('betAmount').value);
+            currentBet = Math.max(1, Math.min(currentBet, gold));
+            document.getElementById('betAmount').value = currentBet;
+            playTavernSound();
+        }
+
+        async function rollDice() {
+            const rollButton = document.getElementById('rollButton');
+            rollButton.disabled = true;
+            
+            // Player roll
+            const playerDice = document.getElementById('playerDice');
+            playerDice.style.animation = 'shake 0.5s infinite';
+            for(let i = 0; i < 8; i++) {
+                playerDice.textContent = getRandomDice();
+                await sleep(80);
+            }
+            const playerRoll = Math.floor(Math.random() * 6) + 1;
+            playerDice.textContent = getDiceFace(playerRoll);
+            playerDice.style.animation = '';
+
+            // Opponent roll after delay
+            await sleep(1000);
+            const opponentDice = document.getElementById('opponentDice');
+            opponentDice.style.animation = 'shake 0.5s infinite';
+            for(let i = 0; i < 8; i++) {
+                opponentDice.textContent = getRandomDice();
+                await sleep(80);
+            }
+            const opponentRoll = Math.floor(Math.random() * 6) + 1;
+            opponentDice.textContent = getDiceFace(opponentRoll);
+            opponentDice.style.animation = '';
+
+            // Determine winner
+            let resultText = '';
+            if(playerRoll > opponentRoll) {
+                gold += currentBet;
+                resultText = `By the gods! You claim ${currentBet} gold! 🎉 The tavernkeep scowls as coins clink`;
+            } else if(playerRoll < opponentRoll) {
+                gold -= currentBet;
+                resultText = `Alas! ${currentBet} gold lost to the house! 💸 The crowd roars with laughter`;
+            } else {
+                resultText = `A draw! The dice gods show mercy ⚖️ Wager returned`;
+            }
+
+            document.getElementById('result').innerHTML = resultText;
+            updateGoldDisplay();
+            rollButton.disabled = false;
+            playTavernSound(playerRoll > opponentRoll ? 'win' : 'lose');
+        }
+
+        function getRandomDice() {
+            const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+            return diceFaces[Math.floor(Math.random() * 6)];
+        }
+
+        function getDiceFace(number) {
+            return ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'][number - 1];
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function playTavernSound(type) {
+            const sounds = {
+                default: new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU'),
+                win: new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU'),
+                lose: new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU')
+            };
+            (sounds[type] || sounds.default).play().catch(() => {});
+        }
+
+        document.getElementById('betAmount').max = gold;
+    </script>
+</body>
+</html>
