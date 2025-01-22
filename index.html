@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: 'MedievalSharp', 'Times New Roman', serif;
-            background: #2b1a0d url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYX////19fXu7u7p6enj4+Pe3t7b29vZ2dnX19fV1dXR0dHNzc3Ly8vJycnHx8fFxcXDw8PBwcG/v7+9vb27u7u5ubm3t7e1tbWzs7OxsbHw8PCS5xLBAAABY0lEQVR4nO3W13KDQBBE0QZBzjmn//+MBQKBQCCQrDr1qXqbqr41Z/SQqqqqqqqqqqqqqvpHTc7li8VCLj0Z9bqo5ArFYi4d9Tqo5HPFYjYR9Tqo5DL5YmYq6nVQyaaLxfRE1OugkhoUk5NRr4PKSHEkGfU6qCSKxUTU66CSKBbjUa+DStTr4H8kXox6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVSiXgeVqNdBJep1UIl6HVT+A1QnQeD5wvjBAAAAAElFTkSuQmCC');
+            background: #2b1a0d url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYX////19fXu7u7p6enj4+Pe3t7b29vZ2dnX19fV1dXR0dHNzc3Ly8vJycnHx8fFxcXDw8PBwcG/v7+9vb27u7u5ubm3t7e1tbWzs7OxsbHw8PCS5xLBAAABY0lEQVR4nO3W13KDQBBE0QZBzjmn//+MBQKBQCCQrDr1qXqbqr41Z/SQqqqqqqqqqqqqqvpHTc7li8VCLj0Z9bqo5ArFYi4d9Tqo5HPFYjYR9Tqo5DL5YmYq6nVQyaaLxfRE1OugkhoUk5NRr4NKSHEkGfU6qCSKxXjU66AS9Tr4H4kXo14HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4HlajXQSXqdVCJeh1Uol4Hlf8A1UlL8S2w7XkAAAAASUVORK5CYII=');
             color: #e0d3a9;
             text-align: center;
             padding: 20px;
@@ -201,6 +201,14 @@
             100% { opacity: 0.8; }
         }
 
+        @keyframes shake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-5px, -5px) rotate(-5deg); }
+            50% { transform: translate(5px, 5px) rotate(5deg); }
+            75% { transform: translate(-5px, 5px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
         .candle {
             animation: flicker 1.5s infinite;
             display: inline-block;
@@ -225,7 +233,7 @@
             <button onclick="adjustBet(2)">Double Or Naught</button>
             <button onclick="allIn()">All Ye Gold!</button>
             <div style="margin: 20px 0">
-                <input type="number" id="betAmount" value="5" min="1" max="100">
+                <input type="number" id="betAmount" value="5" min="1" max="100" step="1">
                 <button onclick="updateBet()">Lock Wager</button>
             </div>
         </div>
@@ -312,7 +320,7 @@
                 gold += currentBet;
                 resultText = `By the gods! You claim ${currentBet} gold! 🎉 The tavernkeep scowls as coins clink`;
             } else if(playerRoll < opponentRoll) {
-                gold -= currentBet;
+                gold = Math.max(0, gold - currentBet);
                 resultText = `Alas! ${currentBet} gold lost to the house! 💸 The crowd roars with laughter`;
             } else {
                 resultText = `A draw! The dice gods show mercy ⚖️ Wager returned`;
